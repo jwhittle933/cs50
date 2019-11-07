@@ -3,8 +3,6 @@
 #include <string.h>
 #include <ctype.h>
 
-char text[] = "caN yOu Read iT?";
-
 void usage(char* name);
 
 int main(int argc, string argv[])
@@ -15,22 +13,24 @@ int main(int argc, string argv[])
 		return 0;
 	}
 
-	printf("plaintext: %s\n", text);
+  string text = get_string("plaintext: ");
+
   int cipher;
   sscanf(argv[1], "%d", &cipher);
 
-	printf("ciphertext: ");
+  printf("ciphertext: ");
 	for (int i = 0, n = strlen(text); i < n; i++)
 	{
     // check for lowercase
     if (islower(text[i])) printf("%c", (((text[i] + cipher) - 97 ) % 26) + 97);
     // check for uppercase
-    else if (isupper(text[i])) printf("%c", (((text[i] + cipher) - 65 ) % 26) + 65);
+    else if (islower(text[i])) printf("%c", (((text[i] + cipher) - 65) % 26) + 65);
     // anything else (i.e., space, punctuation, etc.), pass to stdout
     else printf("%c", text[i]);
 	}
 
-  printf("\n");
+	printf("\n");
+  return 0;
 }
 
 
